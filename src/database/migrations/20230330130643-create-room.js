@@ -21,6 +21,9 @@ module.exports = {
       floor: {
         type: Sequelize.INTEGER
       },
+      price: {
+        type: Sequelize.INTEGER
+      },
       roomType: {
         // type: Sequelize.DataTypes.ENUM('PRESIDENTIAL', 'SINGLE', 'DOUBLE_ROOM'),
         type: Sequelize.ENUM('PRESIDENTIAL', 'SINGLE', 'DOUBLE_ROOM'),

@@ -7,13 +7,14 @@ import hotel from './hotel';
 import room from './room';
 import auth from './auth';
 import destinations from './destinations';
+import payment from "./payment";
 
 dotenv.config();
 
 const host =
-  process.env.NODE_ENV === "production"
-    ? process.env.BASE_URL.split("https://")[1]
-    : process.env.BASE_URL.split("http://")[1];
+  process.env.NODE_ENV === "production" ?
+  process.env.BASE_URL.split("https://")[1] :
+  process.env.BASE_URL.split("http://")[1];
 
 const paths = {
   ...hello,
@@ -22,7 +23,8 @@ const paths = {
   ...room,
   ...request,
   ...auth,
-  ...destinations
+  ...destinations,
+  ...payment
   //   add other defined apis here
 };
 
@@ -43,8 +45,7 @@ const config = {
       in: "header",
     },
   },
-  tags: [
-    {
+  tags: [{
       name: "Hello",
       description: "Example Api",
     },
@@ -116,6 +117,10 @@ const config = {
         floor: {
           type: "integer",
           example: "2",
+        },
+        price: {
+          type: "integer",
+          example: "30000",
         },
         roomType: {
           type: "string",
@@ -197,7 +202,49 @@ const config = {
           example: 'PENDING'
         }
       }
+    },
+    Payment: {
+      type: 'object',
+      properties: {
+        amount: {
+          typeof: 'number',
+          example: 1000
+        },
+        currency: {
+          typeof: 'string',
+          example: 'USD'
+        },
+        requestId: {
+          typeof: 'number',
+          example: 1
+        },
+        status: {
+          typeof: 'string',
+          example: 'PENDING'
+        },
+        stripePaymentId: {
+          typeof: 'string',
+          example: 'ch_1GqjN2GPFD3hD9x0JXxX0X0X'
+        }
+      }
+    },
+    PaymentPayload:{
+      type: 'object',
+      properties: {
+          roomName: {
+            type: 'string',
+            example: 'Room 1'
+          },
+          price: {
+            type: 'number',
+            example: 10000
+          }, 
+          requestId: {
+            typeof: 'number',
+            example: 1
+          },
+        }
     }
-  },
+  }
 };
 export default config;

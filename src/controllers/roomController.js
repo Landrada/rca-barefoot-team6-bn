@@ -3,14 +3,14 @@ import Room from "../database/models/room";
 
 // create a hotel
 export async function createRoom(req, res) {
-    const { name, description, maxAccomodate, floor, roomType } = req.body;
+    const { name, description, maxAccomodate, floor, roomType, price } = req.body;
     const { hotelId } = req.params
     try {
         const hotel = await Hotel.findOne({
             where: { id: hotelId }
         });
         if (!hotel) return res.status(404).json({ message: 'Hotel not found' });
-        const room = await Room.create({ name, description, maxAccomodate, floor, roomType, hotelId });
+        const room = await Room.create({ name, description, maxAccomodate, floor, roomType, hotelId, price });
         return res.status(201).json({
             status: true,
             message: "Room created successfully",

@@ -39,6 +39,10 @@ const roomObj = {
     type: DataTypes.INTEGER,
     allowNull: false
   },
+  price: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
   roomType: {
     type: DataTypes.ENUM('PRESIDENTIAL', 'SINGLE', 'DOUBLE_ROOM'),
     allowNull: false

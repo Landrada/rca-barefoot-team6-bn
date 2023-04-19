@@ -8,6 +8,9 @@ import session from 'express-session';
 // all routes
 import routes from './routes';
 
+// cors
+const cors = require("cors");
+
 // swagger
 import swaggerUI from 'swagger-ui-express';
 // api docs
@@ -28,6 +31,7 @@ app.use(session({
 // initializing passport must come after session configuration otherwise it won't work
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cors());
 
 app.use(json());
 
